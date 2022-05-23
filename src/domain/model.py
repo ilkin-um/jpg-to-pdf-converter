@@ -19,6 +19,6 @@ def allocate_jpeg(src_path: str) -> JPG:
         return JPG(src_path=src_path)
 
 
+@is_pdf
 def allocate_pdf(destination_path: str) -> PDF:
-    if is_pdf(destination_path):
-        return PDF(destination_path=destination_path)
+    return PDF(destination_path=destination_path)

@@ -3,6 +3,7 @@ import sys
 
 sys.path.append(r"C:\Users\pythondev\Desktop\personal\portfolio\jpeg-to-pdf-converter")
 from src.domain import model
+from src.domain.exceptions import WrongFileExtensionException
 
 
 def test_jpeg_creation():
@@ -40,5 +41,7 @@ def test_pdf_allocation():
 
 
 def test_pdf_allocation_wrong():
-    pdf = model.PDF(destination_path="test.pdf")
-    assert model.allocate_pdf(destination_path="test.pdf") == pdf
+    with pytest.raises(WrongFileExtensionException) as err:
+        model.allocate_pdf(destination_path="test.svg")
+
+    assert str(err.value) == "Expected file with .pdf extension, got another."
