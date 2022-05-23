@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "jpg-to-pdf-converter"
+name = "jpeg-to-pdf-converter"
 version = "0.1.0"
-description = ""
-authors = ["Ilkin Um <ilkinum@gmail.com>"]
+description = "Flask API for jpeg to pdf conversion"
+authors = ["ilkin-um <ilkinum@gmail.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
+pytest = ">-7.1.2"
 
 [tool.poetry.dev-dependencies]
-pytest = ">=7.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
