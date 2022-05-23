@@ -40,7 +40,14 @@ def test_pdf_allocation():
     assert model.allocate_pdf(destination_path="test.pdf") == pdf
 
 
-def test_pdf_allocation_wrong():
+def test_jpeg_allocation_wrong_extension():
+    with pytest.raises(WrongFileExtensionException) as err:
+        model.allocate_jpeg(src_path="test.mp4")
+
+    assert str(err.value) == "Expected file with .jpg or .jpeg extension, got another."
+
+
+def test_pdf_allocation_wrong_extension():
     with pytest.raises(WrongFileExtensionException) as err:
         model.allocate_pdf(destination_path="test.svg")
 

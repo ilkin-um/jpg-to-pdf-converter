@@ -14,9 +14,9 @@ class PDF:
     extension: str = field(init=False, default=(".pdf"))
 
 
+@is_jpeg
 def allocate_jpeg(src_path: str) -> JPG:
-    if is_jpeg(src_path):
-        return JPG(src_path=src_path)
+    return JPG(src_path=src_path)
 
 
 @is_pdf
