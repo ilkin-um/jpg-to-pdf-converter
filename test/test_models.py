@@ -37,3 +37,8 @@ def test_jeg_allocation():
 def test_pdf_allocation():
     pdf = model.PDF(destination_path="test.pdf")
     assert model.allocate_pdf(destination_path="test.pdf") == pdf
+
+
+def test_pdf_allocation_wrong():
+    pdf = model.PDF(destination_path="test.pdf")
+    assert model.allocate_pdf(destination_path="test.pdf") == pdf
