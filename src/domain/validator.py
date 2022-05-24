@@ -1,5 +1,5 @@
 from functools import wraps
-from src.domain.exceptions import WrongFileExtensionException
+from src.domain.exception import WrongFileExtensionException
 
 
 def is_jpeg(func: callable) -> callable:

@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from src.domain.validators import is_jpeg, is_pdf
+from src.domain.validator import is_jpeg, is_pdf
 
 
 @dataclass

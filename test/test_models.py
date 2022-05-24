@@ -3,7 +3,7 @@ import sys
 
 sys.path.append(r"C:\Users\pythondev\Desktop\personal\portfolio\jpeg-to-pdf-converter")
 from src.domain import model
-from src.domain.exceptions import WrongFileExtensionException
+from src.domain.exception import WrongFileExtensionException
 
 
 def test_jpeg_creation():
