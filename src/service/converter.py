@@ -26,10 +26,14 @@ def _create_pdf(pdf_path: str) -> Generator:
 
 
 def _convert_and_save_pdf(image, pdf) -> None:
-    pdf_bytes = img2pdf.convert(image.filename)
+    pdf_bytes = _convert_to_pdf(image)
 
     with _create_pdf(pdf.destination_path) as file:
         file.write(pdf_bytes)
+
+
+def _convert_to_pdf(image) -> bytes:
+    return img2pdf.convert(image.filename)
 
 
 def _get_jpg_and_pdf(jpg_path, pdf_path) -> tuple[model.JPG, model.PDF]:
