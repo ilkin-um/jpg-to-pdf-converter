@@ -3,23 +3,11 @@ import os
 from PIL import Image
 from contextlib import contextmanager
 from src.domain import model
-
-
-def _convert_and_save_pd(image, pdf):
-    pdf_bytes = img2pdf.convert(image.filename)
-
-    with _create_pdf(pdf.destination_path, pdf_bytes) as file:
-        file.write(pdf_bytes)
-
-
-def _get_jpg_and_pdf(jpg_path, pdf_path):
-    jpg = model.JPG(src_path=jpg_path)
-    pdf = model.PDF(destination_path=pdf_path)
-    return jpg, pdf
+from typing import Generator
 
 
 @contextmanager
-def _open_jpg(img_path: str):
+def _open_jpg(img_path: str) -> Generator:
     try:
         image = Image.open(img_path)
         yield image
@@ -28,9 +16,28 @@ def _open_jpg(img_path: str):
 
 
 @contextmanager
-def _create_pdf(pdf_path: str, pdf_bytes: bytes):
+def _create_pdf(pdf_path: str, pdf_bytes: bytes) -> Generator:
     try:
         file = open(pdf_path, "wb")
         yield file
     finally:
         file.close()
+
+
+def _convert_and_save_pdf(image, pdf) -> None:
+    pdf_bytes = img2pdf.convert(image.filename)
+
+    with _create_pdf(pdf.destination_path, pdf_bytes) as file:
+        file.write(pdf_bytes)
+
+
+def _get_jpg_and_pdf(jpg_path, pdf_path) -> tuple[model.JPG, model.PDF]:
+    jpg = model.JPG(src_path=jpg_path)
+    pdf = model.PDF(destination_path=pdf_path)
+    return jpg, pdf
+
+
+def jpg2pdf(jpg_path: str, pdf_path: str) -> None:
+    jpg, pdf = _get_jpg_and_pdf(jpg_path, pdf_path)
+    with _open_jpg(jpg.src_path) as img:
+        _convert_and_save_pdf(img, pdf)
