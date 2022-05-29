@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from src.domain import model
 from src.service import validator
 from typing import Generator
-
+import uuid
 
 @contextmanager
 def _open_jpg(img_path: str) -> Generator:
@@ -37,8 +37,8 @@ def _convert_to_pdf(image) -> bytes:
 
 
 def _get_jpg_and_pdf(jpg_path, pdf_path) -> tuple[model.JPG, model.PDF]:
-    jpg = model.allocate_jpeg(src_path=jpg_path)
-    pdf = model.allocate_pdf(destination_path=pdf_path)
+    jpg = model.allocate_jpeg(code=uuid.uuid4(),src_path=jpg_path)
+    pdf = model.allocate_pdf(code=uuid.uuid4(),destination_path=pdf_path)
     return jpg, pdf
 
 
