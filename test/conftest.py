@@ -1,3 +1,4 @@
+from re import L
 import pytest
 import uuid
 import sys
@@ -14,3 +15,13 @@ def app():
 @pytest.fixture
 def get_uuid():
     return uuid.uuid4()
+
+
+@pytest.fixture
+def get_jpg_dict(get_uuid):
+    return {"code": get_uuid, "src_path": "random.jpg"}
+
+
+@pytest.fixture
+def get_pdf_dict(get_uuid):
+    return {"code": get_uuid, "destination_path": "random.pdf"}

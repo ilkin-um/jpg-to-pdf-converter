@@ -23,6 +23,13 @@ class PDF:
     destination_path: str
     extension: str = field(init=False, default=(".pdf"))
 
+    @classmethod
+    def from_dict(cls, dict_):
+        return cls(**dict_)
+
+    def to_dict(self):
+        return asdict(self)
+
 
 @is_jpeg
 def allocate_jpeg(code: uuid.UUID, src_path: str) -> JPG:

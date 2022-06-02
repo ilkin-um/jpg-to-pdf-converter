@@ -55,16 +55,25 @@ def test_pdf_allocation_wrong_extension(get_uuid):
     assert str(err.value) == "Expected file with .pdf extension, got another."
 
 
-def test_jpeg_model_from_dict(get_uuid):
-    di = {"code": get_uuid, "src_path": "random.jpg"}
-    pdf = model.JPG.from_dict(di)
-
+def test_jpg_model_from_dict(get_uuid, get_jpg_dict):
+    pdf = model.JPG.from_dict(get_jpg_dict)
     assert pdf.code == get_uuid
     assert pdf.src_path == "random.jpg"
 
 
-def test_jpeg_model_to_dict(get_uuid):
-    di = {"code": get_uuid, "src_path": "random.jpg"}
-    jpg = model.JPG.from_dict(di)
-    di["extensions"] = jpg.extensions
-    assert jpg.to_dict() == di
+def test_jpg_model_to_dict(get_uuid, get_jpg_dict):
+    jpg = model.JPG.from_dict(get_jpg_dict)
+    get_jpg_dict["extensions"] = jpg.extensions
+    assert jpg.to_dict() == get_jpg_dict
+
+
+def test_pdf_model_from_dict(get_uuid, get_pdf_dict):
+    pdf = model.PDF.from_dict(get_pdf_dict)
+    assert pdf.code == get_uuid
+    assert pdf.destination_path == "random.pdf"
+
+
+def test_pdf_model_to_dict(get_uuid, get_pdf_dict):
+    pdf = model.PDF.from_dict(get_pdf_dict)
+    get_pdf_dict["extension"] = pdf.extension
+    assert pdf.to_dict() == get_pdf_dict
