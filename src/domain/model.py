@@ -1,6 +1,7 @@
+import uuid
+import datetime
 from dataclasses import dataclass, field, asdict
 from src.domain.validator import is_jpeg, is_pdf
-import uuid
 
 
 @dataclass
@@ -22,6 +23,20 @@ class PDF:
     code: uuid.UUID
     destination_path: str
     extension: str = field(init=False, default=(".pdf"))
+
+    @classmethod
+    def from_dict(cls, dict_):
+        return cls(**dict_)
+
+    def to_dict(self):
+        return asdict(self)
+
+
+@dataclass
+class Converted:
+    converted_from: JPG
+    converted_to: PDF
+    converted_at: datetime.datetime
 
     @classmethod
     def from_dict(cls, dict_):

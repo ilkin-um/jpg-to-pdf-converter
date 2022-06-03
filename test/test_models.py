@@ -1,6 +1,7 @@
 import pytest
 import sys
 import uuid
+import datetime
 
 sys.path.append(r"C:\Users\pythondev\Desktop\personal\portfolio\jpeg-to-pdf-converter")
 from src.domain import model
@@ -77,3 +78,13 @@ def test_pdf_model_to_dict(get_uuid, get_pdf_dict):
     pdf = model.PDF.from_dict(get_pdf_dict)
     get_pdf_dict["extension"] = pdf.extension
     assert pdf.to_dict() == get_pdf_dict
+
+
+def test_if_converted_model_is_created(get_uuid):
+    jpg = model.JPG(code=get_uuid, src_path="random.jpg")
+    pdf = model.PDF(code=get_uuid, destination_path="random.pdf")
+    converted = model.Converted(
+        converted_from=jpg, converted_to=pdf, converted_at=datetime.datetime.now()
+    )
+    assert converted.converted_to.code == get_uuid
+    assert converted.converted_from.code == get_uuid
