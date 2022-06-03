@@ -48,8 +48,8 @@ def converted_data(get_uuid):
 
 @pytest.fixture
 def converted_dicts(get_uuid):
-    jpg = model.JPG(code=get_uuid, src_path="fake.jpg")
-    pdf = model.PDF(code=get_uuid, dest_path="fake.pdf")
+    jpg = model.JPG(code=get_uuid, src_path="random.jpg")
+    pdf = model.PDF(code=get_uuid, destination_path="random.pdf")
     return [
         {
             "converted_from": jpg,
@@ -76,8 +76,8 @@ def converted_dicts(get_uuid):
 
 @pytest.fixture
 def converted_dict(get_uuid):
-    jpg = model.JPG(code=get_uuid, src_path="fake.jpg")
-    pdf = model.PDF(code=get_uuid, dest_path="fake.pdf")
+    jpg = model.JPG(code=get_uuid, src_path="random.jpg")
+    pdf = model.PDF(code=get_uuid, destination_path="random.pdf")
 
     dict_ = {
         "converted_from": jpg,

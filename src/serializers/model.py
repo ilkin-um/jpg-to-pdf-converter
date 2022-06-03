@@ -24,3 +24,15 @@ class JPGSerializer(json.JSONEncoder):
             }
         except AttributeError:
             return super().default(object)
+
+
+class ConvertedJsonEncoder(json.JSONEncoder):
+    def default(self, object: Any) -> Any:
+        try:
+            return {
+                "converted_from": json.dumps(object.converted_from, cls=JPGSerializer),
+                "converted_to": json.dumps(object.converted_to, cls=PDFSerializer),
+                "converted_at": str(object.converted_at),
+            }
+        except AttributeError:
+            return super().default(object)
