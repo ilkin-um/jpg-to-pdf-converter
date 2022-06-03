@@ -44,3 +44,44 @@ def converted_data(get_uuid):
     )
 
     return [converted_1, converted_2, converted_3]
+
+
+@pytest.fixture
+def converted_dicts(get_uuid):
+    jpg = model.JPG(code=get_uuid, src_path="fake.jpg")
+    pdf = model.PDF(code=get_uuid, dest_path="fake.pdf")
+    return [
+        {
+            "converted_from": jpg,
+            "converted_to": pdf,
+            "converted_at": datetime.datetime.now(),
+        },
+        {
+            "converted_from": jpg,
+            "converted_to": pdf,
+            "converted_at": datetime.datetime.now(),
+        },
+        {
+            "converted_from": jpg,
+            "converted_to": pdf,
+            "converted_at": datetime.datetime.now(),
+        },
+        {
+            "converted_from": jpg,
+            "converted_to": pdf,
+            "converted_at": datetime.datetime.now(),
+        },
+    ]
+
+
+@pytest.fixture
+def converted_dict(get_uuid):
+    jpg = model.JPG(code=get_uuid, src_path="fake.jpg")
+    pdf = model.PDF(code=get_uuid, dest_path="fake.pdf")
+
+    dict_ = {
+        "converted_from": jpg,
+        "converted_to": pdf,
+        "converted_at": datetime.datetime.now(),
+    }
+    return [model.Converted.from_dict(dict_)]
