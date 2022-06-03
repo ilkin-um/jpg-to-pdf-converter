@@ -2,7 +2,7 @@ import json
 from typing import Any
 
 
-class PDFJsonEncoder(json.JSONEncoder):
+class PDFSerializer(json.JSONEncoder):
     def default(self, object: Any) -> Any:
         try:
             return {
@@ -14,7 +14,7 @@ class PDFJsonEncoder(json.JSONEncoder):
             return super().default(object)
 
 
-class JPGJsonEncoder(json.JSONEncoder):
+class JPGSerializer(json.JSONEncoder):
     def default(self, object: Any) -> Any:
         try:
             return {
