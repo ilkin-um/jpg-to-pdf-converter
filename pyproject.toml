@@ -10,7 +10,7 @@ python = "^3.9"
 img2pdf = ">=0.4.4"
 Pillow = ">=9.1.0"
 flask = ">-2.1.12"
-
+python-decouple = ">=3.6"
 [tool.poetry.dev-dependencies]
 pytest = ">-7.1.2"
 pytest-flask = ">=1.2.0"

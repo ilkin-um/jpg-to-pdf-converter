@@ -15,7 +15,7 @@ def _get_converted(timestamp_: datetime.datetime, uuid_: uuid.UUID):
 
 
 @mock.patch("src.entrypoints.api.rest.convert.converted_list")
-def test_get(mock_user_case, client, get_uuid):
+def test_converted_list(mock_user_case, client, get_uuid):
     timestamp_ = datetime.datetime.now()
     converted_list = [Converted.from_dict(_get_converted(timestamp_, get_uuid))]
     mock_user_case.return_value = converted_list

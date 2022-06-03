@@ -39,7 +39,7 @@ def _get_converted_list():
 
 
 @blueprint.route("/converteds", methods=["GET"])
-def converted_list():
+def get_converted_list():
     repo = MemoryRepo(_get_converted_list())
     result = converted_list(repo)
     return Response(
