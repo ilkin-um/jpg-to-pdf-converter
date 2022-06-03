@@ -12,3 +12,15 @@ class PDFJsonEncoder(json.JSONEncoder):
             }
         except AttributeError:
             return super().default(object)
+
+
+class JPGJsonEncoder(json.JSONEncoder):
+    def default(self, object: Any) -> Any:
+        try:
+            return {
+                "code": str(object.code),
+                "src_path": object.src_path,
+                "extensions": f"{list(object.extensions)}",
+            }
+        except AttributeError:
+            return super().default(object)

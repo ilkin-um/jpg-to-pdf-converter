@@ -14,3 +14,16 @@ def test_serialize_pdf(get_uuid):
     """
     json_pdf = json.dumps(pdf, cls=model_serializer.PDFJsonEncoder)
     assert json.loads(json_pdf) == json.loads(json_obj)
+
+
+def test_serialize_jpg(get_uuid):
+    jpg = model.JPG(code=get_uuid, src_path="fake.jpg")
+    expected_json = f"""
+        {{
+            "code": "{get_uuid}",
+            "src_path": "fake.jpg",
+            "extensions": "{list(jpg.extensions)}"
+        }}
+    """
+    json_jpg = json.dumps(jpg, cls=model_serializer.JPGJsonEncoder)
+    assert json.loads(json_jpg) == json.loads(expected_json)
